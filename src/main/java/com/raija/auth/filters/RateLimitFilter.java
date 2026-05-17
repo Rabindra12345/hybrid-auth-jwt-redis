@@ -30,11 +30,13 @@ public class RateLimitFilter extends OncePerRequestFilter {
         this.redisTemplate = redisTemplate;
     }
 
+
     @Override
     protected void doFilterInternal(HttpServletRequest req,
                                     HttpServletResponse res,
                                     FilterChain chain)
             throws ServletException, IOException {
+        System.out.println("RLF ________________________________________________________________________________________");
         String ip = req.getRemoteAddr();
         String uri = req.getRequestURI();
         boolean isAuthPath = AUTH_PATHS.stream().anyMatch(uri::contains);

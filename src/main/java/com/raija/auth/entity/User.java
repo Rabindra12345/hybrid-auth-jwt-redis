@@ -14,7 +14,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    //need unique constraint
     private String username;
+
+    //need unique constraint
     private String email;
 
     private String password; // hashed

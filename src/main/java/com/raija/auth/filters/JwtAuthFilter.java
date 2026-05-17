@@ -13,7 +13,6 @@ import org.springframework.security.authentication.UsernamePasswordAuthenticatio
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
-
 import java.io.IOException;
 import java.util.List;
 
@@ -31,10 +30,11 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                                     HttpServletResponse res,
                                     FilterChain chain)
             throws ServletException, IOException {
-
+        System.out.println("FILTER ____________________________________________________________________________________-");
         String header = req.getHeader("X-Api-Authorization");
 
         if (header == null || !header.startsWith("Bearer ")) {
+            System.out.println("IS NULL !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!11");
             chain.doFilter(req, res);
             return;
         }

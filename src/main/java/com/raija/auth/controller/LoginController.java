@@ -40,8 +40,6 @@ public class LoginController {
 
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest req) {
-
-        // validate user (DB check)
         if (!userRepository.existsByUsername(req.getUsername())) {
             throw new RuntimeException("User not found");
         }

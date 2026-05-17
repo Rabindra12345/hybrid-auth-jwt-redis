@@ -29,7 +29,6 @@ public class RequestValidationInterceptor implements HandlerInterceptor {
     public boolean preHandle(HttpServletRequest request,
                              HttpServletResponse response,
                              Object handler) throws Exception {
-
         if (BLOCKED_METHODS.contains(request.getMethod().toUpperCase())) {
             sendError(response, HttpServletResponse.SC_METHOD_NOT_ALLOWED,
                     "Method not allowed");

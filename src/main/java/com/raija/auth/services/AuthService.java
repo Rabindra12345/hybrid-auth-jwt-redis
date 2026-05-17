@@ -32,6 +32,7 @@ public class AuthService {
         if (userRepository.existsByUsername(req.getUsername())) {
             throw new RuntimeException("Username already taken");
         }
+
         if (userRepository.existsByUsername(req.getUsername())) {
             throw new RuntimeException("Email already in use");
         }
@@ -44,11 +45,9 @@ public class AuthService {
         user.setCreatedAt(System.currentTimeMillis());
 
         userRepository.save(user);
-
         // Setting  auto login for now once user is created
         // ** need to remove in future **
         String sessionId = UUID.randomUUID().toString();
-
         SessionData session = new SessionData(
                 user.getId(),
                 UUID.randomUUID().toString(),
@@ -59,9 +58,9 @@ public class AuthService {
                 req.getDeviceId()
         );
         sessionService.createSession(sessionId, session);
-        String accessToken = jwtService.generateAccessToken(user.getId(), sessionId);
-        String refreshToken = jwtService.generateRefreshToken(user.getId(), sessionId);
-        return new AuthResponse(accessToken, refreshToken);
+//        String accessToken = jwtService.generateAccessToken(user.getId(), sessionId);
+//        String refreshToken = jwtService.generateRefreshToken(user.getId(), sessionId);
+        return new AuthResponse();
     }
 
     // AuthService
