@@ -14,7 +14,7 @@ import java.time.Duration;
 import java.util.List;
 
 @Component
-@Order(1)
+//@Order(1)
 public class RateLimitFilter extends OncePerRequestFilter {
 
     private final RedisTemplate<String, Object> redisTemplate;

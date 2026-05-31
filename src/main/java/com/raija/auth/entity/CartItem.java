@@ -93,4 +93,7 @@ public class CartItem {
         this.productName = productName;
         this.productId = productId;
     }
+
+    public CartItem() {
+    }
 }

@@ -25,6 +25,10 @@ public class ApiResponse<T> {
         return response;
     }
 
+    public static ApiResponse<Void> ok() {
+        return new ApiResponse<>(true, null,"Success", Instant.now());
+    }
+
     public static <T> ApiResponse<T> fail(String message) {
         ApiResponse<T> response = new ApiResponse<>();
         response.setSuccess(false);

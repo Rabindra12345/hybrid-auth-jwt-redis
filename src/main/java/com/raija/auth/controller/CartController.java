@@ -12,7 +12,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/api/v1/cart")
+@RequestMapping("/v1/cart")
 //@RequiredArgsConstructor
 public class CartController {
 
@@ -23,6 +23,12 @@ public class CartController {
     public ResponseEntity<ApiResponse<CartDto>> getCart(@PathVariable String userId) {
         CartDto cart = cartService.getCart(userId);
         return ResponseEntity.ok(ApiResponse.ok(cart, "Cart fetched successfully"));
+    }
+
+    @DeleteMapping("/{userId}")
+    public ResponseEntity<ApiResponse<Void>> clearCart(@PathVariable String userId) {
+        cartService.clearCart(userId);
+        return ResponseEntity.ok(ApiResponse.ok(null, "Cart cleared"));
     }
 
     @PostMapping("/{userId}/items")
@@ -43,17 +49,10 @@ public class CartController {
     }
 
     @DeleteMapping("/{userId}/items/{productId}")
-    public ResponseEntity<ApiResponse<CartDto>> removeItem(
+    public ResponseEntity<ApiResponse<Void>> removeItem(
             @PathVariable String userId,
             @PathVariable String productId) {
-
         CartDto cart = cartService.removeItem(userId, productId);
-        return ResponseEntity.ok(ApiResponse.ok(cart, "Item removed from cart"));
-    }
-
-    @DeleteMapping("/{userId}")
-    public ResponseEntity<ApiResponse<Void>> clearCart(@PathVariable String userId) {
-        cartService.clearCart(userId);
-        return ResponseEntity.ok(ApiResponse.ok(null, "Cart cleared"));
+        return ResponseEntity.ok(ApiResponse.ok());
     }
 }
